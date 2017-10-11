@@ -1,0 +1,37 @@
+doctype html
+html
+  body
+    p
+      h1 숫자 야구 도우미
+    form(action='/number_baseball/initialize' method='get')
+      input(type="submit" value="초기화")
+
+    form(action='/number_baseball' method='post')
+      p
+        |숫자를 입력하세요 ->
+        input(type='text' name='input')
+      p
+        |숫자와 자리 모두 맞은 개수 ->
+        input(type='text' name='circle')
+      p
+        |숫자만 맞은 개수 ->
+        input(type='text' name='triangle')
+      p
+        input(type='submit')
+    p
+      if input_arr
+        |input arr ->
+        #{input_arr}
+    p
+      if result_arr
+        |result arr ->
+        #{result_arr}
+    if possible_digit
+      p
+        each digit,index in possible_digit
+          #{index+1}
+          | 번째 숫자 가능성
+          ul
+            each possible,index in digit
+              if possible
+                li= index
